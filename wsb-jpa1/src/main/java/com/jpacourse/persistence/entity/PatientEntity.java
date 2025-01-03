@@ -2,8 +2,15 @@ package com.jpacourse.persistence.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.*;
 
+import java.util.List;
 @Entity
 @Table(name = "PATIENT")
 public class PatientEntity {
@@ -12,6 +19,14 @@ public class PatientEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "patient") // relacja dwustronna
+	private AddressEntity address;
+	public AddressEntity getAddress() {
+		return address;
+	}
+	public void setAddress(AddressEntity address) {
+		this.address = address;
+	}
 	@Column(nullable = false)
 	private String firstName;
 
@@ -29,17 +44,6 @@ public class PatientEntity {
 
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
-
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "patient")
-	private AddressEntity address;
-
-	public AddressEntity getAddress() {
-		return address;
-	}
-
-	public void setAddress(AddressEntity address) {
-		this.address = address;
-	}
 
 	public Long getId() {
 		return id;
@@ -97,4 +101,20 @@ public class PatientEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	@Column(nullable = false)
+	private char hasBeenVaccinated;
+	public char getHasBeenVaccinated() {
+		return hasBeenVaccinated;
+	}
+	public void setHasBeenVaccinated(char hasBeenVaccinated) {
+		this.hasBeenVaccinated = hasBeenVaccinated;
+	}
+	public List<VisitEntity> getVisits() {
+		return visits;
+	}
+	public void setVisits(List<VisitEntity> visits) {
+		this.visits = visits;
+	}
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+	private List<VisitEntity> visits;
 }

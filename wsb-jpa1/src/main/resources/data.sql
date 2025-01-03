@@ -10,17 +10,17 @@ INSERT INTO doctor (doctor_number, email, first_name, last_name, specialization,
 ('DOC009', 'doctor9@example.com', 'James', 'Anderson', 'Urology', '555-666-777'),
 ('DOC010', 'doctor10@example.com', 'Jessica', 'Thomas', 'Endocrinology', '888-999-000');
 
-INSERT INTO patient (date_of_birth, email, first_name, last_name, patient_number, telephone_number) VALUES
-('1980-01-01', 'patient1@example.com', 'Anna', 'Nowak', 'PAT001', '123-456-789'),
-('1990-02-02', 'patient2@example.com', 'Jan', 'Kowalski', 'PAT002', '234-567-890'),
-('2000-03-03', 'patient3@example.com', 'Ewa', 'Wiśniewska', 'PAT003', '345-678-901'),
-('2010-04-04', 'patient4@example.com', 'Piotr', 'Wójcik', 'PAT004', '456-789-012'),
-('1985-05-05', 'patient5@example.com', 'Katarzyna', 'Kowalczyk', 'PAT005', '567-890-123'),
-('1995-06-06', 'patient6@example.com', 'Michał', 'Kamiński', 'PAT006', '678-901-234'),
-('2005-07-07', 'patient7@example.com', 'Agnieszka', 'Lewandowska', 'PAT007', '789-012-345'),
-('2015-08-08', 'patient8@example.com', 'Tomasz', 'Zieliński', 'PAT008', '890-123-456'),
-('1988-09-09', 'patient9@example.com', 'Joanna', 'Szymańska', 'PAT009', '901-234-567'),
-('1998-10-10', 'patient10@example.com', 'Paweł', 'Woźniak', 'PAT010', '012-345-678');
+INSERT INTO patient (date_of_birth, email, first_name, last_name, patient_number, telephone_number, has_been_vaccinated) VALUES
+('1980-01-01', 'patient1@example.com', 'Anna', 'Nowak', 'PAT001', '123-456-789', 'Y'),
+('1990-02-02', 'patient2@example.com', 'Jan', 'Kowalski', 'PAT002', '234-567-890', 'Y'),
+('2000-03-03', 'patient3@example.com', 'Ewa', 'Wiśniewska', 'PAT003', '345-678-901', 'N'),
+('2010-04-04', 'patient4@example.com', 'Piotr', 'Wójcik', 'PAT004', '456-789-012', 'Y'),
+('1985-05-05', 'patient5@example.com', 'Katarzyna', 'Kowalczyk', 'PAT005', '567-890-123', 'N'),
+('1995-06-06', 'patient6@example.com', 'Michał', 'Kamiński', 'PAT006', '678-901-234', 'Y'),
+('2005-07-07', 'patient7@example.com', 'Agnieszka', 'Lewandowska', 'PAT007', '789-012-345', 'Y'),
+('2015-08-08', 'patient8@example.com', 'Tomasz', 'Zieliński', 'PAT008', '890-123-456', 'N'),
+('1988-09-09', 'patient9@example.com', 'Joanna', 'Szymańska', 'PAT009', '901-234-567', 'N'),
+('1998-10-10', 'patient10@example.com', 'Paweł', 'Woźniak', 'PAT010', '012-345-678', 'Y');
 
 INSERT INTO address (address_line1, address_line2, city, postal_code, doctor_id, patient_id) VALUES
 ('Main St 1', 'Apt 1', 'Warsaw', '00-001', 1, NULL),
@@ -42,5 +42,5 @@ INSERT INTO medical_treatment (description, type, visit_id) VALUES
 ('Recommending physical therapy', 'Therapy', 2),
 ('Performing X-ray', 'Diagnosis', 3),
 ('Recommending ointment use', 'Treatment', 4),
-('Blood pressure check', 'Examination', 5),
-('Recommending MRI', 'Examination', 6);
+('Blood pressure check', 'Examination', 3),
+('Recommending MRI', 'Examination', 2);
