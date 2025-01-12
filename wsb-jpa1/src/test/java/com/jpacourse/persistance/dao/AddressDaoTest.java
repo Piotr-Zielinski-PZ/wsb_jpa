@@ -1,5 +1,4 @@
 package com.jpacourse.persistance.dao;
-package com.jpacourse.service;
 
 import com.jpacourse.persistence.dao.AddressDao;
 import com.jpacourse.persistence.entity.AddressEntity;
@@ -84,36 +83,4 @@ public class AddressDaoTest
     }
 
 
-}
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class PatientServiceTest {
-
-    @Autowired
-    private PatientService patientService;
-
-    @Autowired
-    private PatientDao patientDao;
-
-    @Transactional
-    @Test
-    public void testShouldRetrievePatientById() {
-        // given
-        PatientEntity patient = new PatientEntity();
-        patient.setFirstName("John");
-        patient.setLastName("Doe");
-        patient.setHasBeenVaccinated(true);
-        patient = patientDao.save(patient);
-
-        // when
-        PatientTO patientTO = patientService.getPatientById(patient.getId());
-
-        // then
-        assertThat(patientTO).isNotNull();
-        assertThat(patientTO.getId()).isEqualTo(patient.getId());
-        assertThat(patientTO.getFirstName()).isEqualTo(patient.getFirstName());
-        assertThat(patientTO.getLastName()).isEqualTo(patient.getLastName());
-        assertThat(patientTO.getHasBeenVaccinated()).isEqualTo(patient.getHasBeenVaccinated());
-    }
 }

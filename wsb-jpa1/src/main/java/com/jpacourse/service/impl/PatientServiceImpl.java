@@ -7,6 +7,12 @@ import com.jpacourse.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
+import com.jpacourse.persistence.entity.VisitEntity;
+import com.jpacourse.mapper.VisitMapper;
+import com.jpacourse.dto.VisitTO;
+
 @Service
 @Transactional
 public class PatientServiceImpl implements PatientService
@@ -22,5 +28,12 @@ public class PatientServiceImpl implements PatientService
     {
         final PatientEntity entity = patientDao.findOne(id);
         return PatientMapper.mapToTO(entity);
+    }
+    @Override
+    public List<VisitTO> findVisitsByPatientId(Long id) {
+        List<VisitEntity> visitEntities = patientDao.findVisitsByPatientId(id);
+        return visitEntities.stream()
+                .map(VisitMapper::mapToTO)
+                .collect(Collectors.toList());
     }
 }

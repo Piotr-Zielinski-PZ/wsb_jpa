@@ -18,6 +18,7 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
+	// Dwustronna relacja z VisitEntity
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "visit_id")
 	private VisitEntity visit;

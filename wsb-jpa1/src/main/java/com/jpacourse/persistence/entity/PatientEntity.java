@@ -1,32 +1,20 @@
 package com.jpacourse.persistence.entity;
 
 import java.time.LocalDate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
 import javax.persistence.*;
 
-import java.util.List;
 @Entity
 @Table(name = "PATIENT")
 public class PatientEntity {
 
+	@Version
+	@Column(nullable = false)
+	private Integer version;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "patient") // relacja dwustronna
-	private AddressEntity address;
-	public AddressEntity getAddress() {
-		return address;
-	}
-	public void setAddress(AddressEntity address) {
-		this.address = address;
-	}
 	@Column(nullable = false)
 	private String firstName;
 
@@ -36,7 +24,7 @@ public class PatientEntity {
 	@Column(nullable = false)
 	private String telephoneNumber;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String email;
 
 	@Column(nullable = false)
@@ -44,6 +32,11 @@ public class PatientEntity {
 
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+
+	// Dwustronna relacja z AddressEntity
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private AddressEntity address;
 
 	public Long getId() {
 		return id;
@@ -115,6 +108,11 @@ public class PatientEntity {
 	public void setVisits(List<VisitEntity> visits) {
 		this.visits = visits;
 	}
+	// Dwustronna relacja z VisitEntity
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
 	private List<VisitEntity> visits;
+
+	public AddressEntity getAddress() {return address;}
+
+	public void setAddress(AddressEntity address) { this.address = address;}
 }

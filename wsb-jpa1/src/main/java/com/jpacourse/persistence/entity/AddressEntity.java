@@ -23,9 +23,11 @@ public class AddressEntity {
 	@Column(nullable = false)
 	private String postalCode;
 
+	// Dwustronna relacja z DoctorEntity
 	@OneToOne(cascade = CascadeType.ALL)
 	private DoctorEntity doctor;
 
+	// Dwustronna relacja z PatientEntity
 	@OneToOne(cascade = CascadeType.ALL)
 	private PatientEntity patient;
 
